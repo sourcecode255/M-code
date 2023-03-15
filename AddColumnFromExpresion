@@ -1,0 +1,5 @@
+= Table.AddColumn(Rule1, "Rule2", each if(Text.Start([#"Temp (NTM)"] ,3) <> "DCL" or Text.Start([#"Temp (NTM)"],3) <> "DSA" or Text.Start([#"Temp (NTM)"] ,3) <> "DBC" ))
+then "Placed"
+else null)
+
+ 
