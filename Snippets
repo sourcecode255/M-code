@@ -3,3 +3,5 @@
 in
     Source
 //OUTPUT 3"
+
+= Table.ReplaceValue( #"PreviousStep" ,each [col1],each if Text.Contains([col2], "Admin") then "OOF" else [col1],Replacer.ReplaceValue,{"col1"})
