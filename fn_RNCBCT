@@ -1,9 +1,10 @@
+//RNCBCT = RenameColumnsByChangeTable
+//Run this function against a table created by fn_CNCT
 let  
-    //Run this function against CreateColumnNameChangeTable
-    Source = (tbl as table) =>
+    fn_RNCBCT = (tbl as table) =>
     Table.TransformColumnNames(tbl, each _&"RRRRR")
 in
-    Source
+    fn_RNCBCT
 
 /*Notes*/
 //Table.TransformColumnNames(table as table, nameGenerator as function, optional options as nullable record) as table
