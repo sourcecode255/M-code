@@ -1,7 +1,0 @@
-let
-    Source = #shared,
-    #"Converted to Table" = Record.ToTable(Source),
-    #"Filtered Rows" = Table.SelectRows(#"Converted to Table", each ([Name] = "Table.ColumnNames")),
-    Value = #"Filtered Rows"{0}[Value]
-in
-    Value
