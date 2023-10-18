@@ -1,0 +1,14 @@
+let  
+    //Run this function against CreateColumnNameChangeTable
+    Source = (tbl as table) =>
+    Table.TransformColumnNames(tbl, each _&"RRRRR")
+in
+    Source
+
+/*Notes*/
+//Table.TransformColumnNames(table as table, nameGenerator as function, optional options as nullable record) as table
+
+
+/*Table.TransformColumnNames( Source,
+                            each if Text.Contains(_, "date" ) then "Bingo." & _ else _ )
+// Adds a prefix to each column name that contains the text "date" */
