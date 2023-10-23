@@ -1,0 +1,11 @@
+// Search down the column and keep values that match criteria, make others null
+let
+    Source = (tbl1 as table, col1 as list) =>
+    Table.AddColumn(tbl1, "Custom", each if Text.Contains(col1, "Delay") then col1 else null)
+in
+    Source
+
+
+//Replace AddColumn with TransformColumn
+    //Table.TransformColumns(table as table, transformOperations as list, optional defaultTransformation as nullable function, optional missingField as nullable number) as table
+    //Table.AddColumn(table as table, newColumnName as text, columnGenerator as function, optional columnType as nullable type) as table
