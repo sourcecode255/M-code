@@ -1,7 +1,8 @@
 //CNCT = ColumnNameChangeTable
-let fn_CNCT = (tbl as table) =>
+let fn_CreateCNCT = (tbl as table) =>
     Table.RemoveColumns(Table.AddColumn(Record.ToTable(tbl{2}), "NewName", each Text.BeforeDelimiter([Value],":")),"Value")
-in  fn_CNCT
+    //if value contains ":" text.before Delimiter AND Find.Replace text before delimiter else value
+in  fn_CreateCNCT
 
 //Add index
 //delete rows that dont need changing - pop up message
