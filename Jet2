@@ -1,0 +1,43 @@
+(*Scheduled Ground Time*)
+[STD]-[IACSTA]=[SGT] 
+
+(*DL9_buffer*)
+if [IACSTA]>[IACATA] (*a/c arrived early*) so [IACSTA]-[IACATA]=[DL9_buffer]
+
+(*DL9*)
+if [SGT]<[TURNAROUND] then [SGT]-[TURNAROUND]-[DL9_Buffer]=[DL9] else "noDL9"
+
+(*REAC_buffer*)
+if [SGT]>[TURNAROUND] (*More ground time scheduled than needed for turnaround, this results in a buffer for any reactionary delay*) then [SGT]-[TURNAROUND]=[REAC_buffer]
+
+(*DL_REAC*)
+if [IACSTA]<[IACATA] (*a/c arrived late*) then [IACATA]-[IACSTA]-[REAC_buffer]=[DL_REAC] (*REMOVE DL9*)
+
+
+Text.BeforeDelimiter(Table.Column(tbl, Table.ColumnNames(tbl){num}){1},":")
+        
+Table.TransformColumnNames(tbl, {Table.ColumnNames(tbl){num},Text.BeforeDelimiter(Table.Column(tbl, Table.ColumnNames(tbl){num}){1},":")})
+
+(*Scheduled Ground Time*)
+(*Scheduled Ground Time*)
+(*Scheduled Ground Time*)
+(*Scheduled Ground Time*)
+(*Scheduled Ground Time*)
+
+Table.TransformColumns(#"Removed Columns", {Body.HtmlBody.21, if Text.Contains([Body.HtmlBody.21],"Delay") then [Body.HtmlBody.21] else null})
+
+Table.TransformColumns(Source, each if Text.Contains([Body.HtmlBody.21], "Delay") then [Body.HtmlBody.21] else null)
+
+
+//Table.TransformColumns(table as table, transformOperations as list, optional defaultTransformation as nullable function, optional missingField as nullable number) as table
+
+
+let
+    Source = #"Inbox as records (4)",
+    #"Added Custom" = Table.AddColumn(Source, "Custom", each if Text.Contains([Body.HtmlBody.21], "Delay") then [Body.HtmlBody.21] else null)
+in
+    #"Added Custom"
+
+    Table.TransformColumnNames(Source, each if column as list contains ":" then text.before else do nothing)
+
+    Table.Column(table as table, column as text) as list
