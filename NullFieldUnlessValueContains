@@ -2,6 +2,8 @@
 let
     Source = (tbl1 as table, col1 as list) =>
     Table.AddColumn(tbl1, "Custom", each if Text.Contains(col1, "Delay") then col1 else null)
+    //Table.TransformColumns(#"Inbox as records (4)", {{"HtmlBody21", each if Text.Contains(_, "-") then Text.AfterDelimiter(_,"-") else _, type text}})
+
 in
     Source
 
