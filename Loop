@@ -1,0 +1,13 @@
+(APIInsightsID as text)=>
+(Counter as number)=>
+let
+Source = Table,
+ID = Table.TransformColumnTypes(Source,{"App Insight ID ", type text}),
+APIInsightsID = "",
+Counter = 1,
+condition = if Counter > ID[Index]{0} then APIInsightsID 
+            else if ID[App Insight ID] <> APIInsightsID then Counter+1
+                else APIInsightsID = ID[App Insight ID]
+
+in
+condition
