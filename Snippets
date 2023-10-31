@@ -2,6 +2,12 @@
     Source = MyFunction(2, 4)
 in
     Source
-//OUTPUT 3"
 
-= Table.ReplaceValue( #"PreviousStep" ,each [col1],each if Text.Contains([col2], "Admin") then "OOF" else [col1],Replacer.ReplaceValue,{"col1"})
+let
+    Source = tbl1,
+    STEP1 = Table.ToRecords(Source),
+    STEP2 = each Record.AddField(Source{_}, Record.FieldNames(Source{_}){_}& "AddThisText", "VALUE")
+
+
+in
+    STEP2
