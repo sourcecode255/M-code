@@ -1,1 +1,0 @@
-= Table.AddColumn(Source, "Custom", each Text.Select([pyx_vehiclename],{"0".."9"}))
