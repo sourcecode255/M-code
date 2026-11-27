@@ -1,4 +1,4 @@
-//merge fName, lName, Org
+//merge first_name, last_name, org
 
 let
     Source = (fName as text, lName as text, Org as text) => 
